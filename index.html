@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Movie Info App</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1 target-densityDpi=device-dpi">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/lib/jquerymobile/jquery.mobile-1.4.5.min.css">
 	<link rel="stylesheet" href="assets/lib/jquerymobile/jquery.mobile.iscrollview.css">
 	<link rel="stylesheet" href="assets/lib/jquerymobile/jquery.mobile.iscrollview-pull.css">
@@ -16,7 +16,88 @@
 </head>
 <body>
 
+	<!-- List Layout -->
+	<div data-role="page" id="home">
+		<!-- Header -->
+		<div data-theme="a" data-role="header" class="gbl-bg">
+			<h3 role="heading" aria-level="1">Moive List</h3>
+			<!--<button data-icon="back" data-iconpos="notext" data-iconshadow="true">Back</button>-->
 
+			<a href="#left-panel" data-theme="b" data-icon="bullets" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon">Menu</a>
+		</div>
+
+		<div data-role="panel" id="left-panel" data-theme="b">
+			<ul data-role="listview">
+				<li data-icon="gear"><a href="#" data-rel="close">Menu</a></li>
+				
+				<li><a href="#">Acura</a></li>
+				<li><a href="#">Audi</a></li>
+				<li><a href="#">BMW</a></li>
+				<li><a href="#">Cadillac</a></li>
+				<li><a href="#">Ferrari</a></li>
+			</ul>
+		</div><!-- /panel -->
+
+		
+		
+
+		<div role="main" class="ui-content">
+
+			<!-- Movie on search -->
+			<div data-role="search" data-inset="true">
+				<div class="top-search">
+					<input data-type="search" id="movieName" placeholder="Enter movie name ...">					
+				</div>
+				<div class="top-search-btn">
+					<button data-icon="navigation" data-iconpos="notext" data-iconshadow="true">Search</button>
+				</div>
+				<div class="clear"></div>
+			</div>
+
+			<ul class="mvl-img-fix" data-role="listview" data-inset="true">
+				<li>
+					<a href="#">
+						<img src="http://image.tmdb.org/t/p/w92//tvSlBzAdRE29bZe5yYWrJ2ds137.jpg">
+						<h2>Broken Bells</h2>
+						<p><strong>Boston Conference Planning</strong></p>
+						<p>Sure, let's plan on meeting at Highland Kitchen at 8:00 tonight. Can't wait!</p>
+					</a>
+				</li>
+
+				<li>
+					<a href="#">
+						<img src="http://image.tmdb.org/t/p/w92//tvSlBzAdRE29bZe5yYWrJ2ds137.jpg">
+						<h2>Broken Bells</h2>
+						<p><strong>Boston Conference Planning</strong></p>
+						<p>Sure, let's plan on meeting at Highland Kitchen at 8:00 tonight. Can't wait!</p>
+					</a>
+				</li>
+
+				<li>
+					<a href="#">
+						<img src="http://image.tmdb.org/t/p/w92//tvSlBzAdRE29bZe5yYWrJ2ds137.jpg">
+						<h2>Broken Bells</h2>
+						<p><strong>Boston Conference Planning</strong></p>
+						<p>Sure, let's plan on meeting at Highland Kitchen at 8:00 tonight. Can't wait!</p>
+					</a>
+				</li>
+			</ul>
+		</div><!-- /content -->
+		<!-- Content 
+		<div data-role="contnet">
+			<div class="content-wrapper" data-iscroll>
+				<ul data-role="listview" id="movie-list" data-theme="e">
+					
+				</ul>
+			</div>
+		</div>
+		-->
+
+		<!-- Footer -->
+		<div data-theme="a" data-role="footer" class="gbl-bg">
+			<h1>&copy; 2015 jewelfarazi.me</h1>
+		</div>
+	</div>
 	
 </body>
 </html>
