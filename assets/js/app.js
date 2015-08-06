@@ -131,6 +131,12 @@ $(document).on('vclick', '#movie-list li a', function() {
 	$.mobile.changePage('#infopage', { transition: "slide", changeHash: false });
 });
 
+// open about page
+$(document).on('vclick', '#about', function() {
+	// change to info page
+	$.mobile.changePage('#aboutPage', { transition: "flip", changeHash: false });
+});
+
 // POST Find new movies on search
 $(document).on('vclick', '#newSearch', function() {
 	// search value
