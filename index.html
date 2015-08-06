@@ -26,20 +26,17 @@
 			<a href="#left-panel" data-theme="b" data-icon="bullets" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon">Menu</a>
 		</div>
 
-		<div data-role="panel" id="left-panel" data-theme="b">
+		<div data-role="panel" id="left-panel" data-position-fixed="true" data-display="push" data-theme="b">
 			<ul data-role="listview">
 				<li data-icon="gear"><a href="#" data-rel="close">Menu</a></li>
 				
-				<li><a href="#">Acura</a></li>
-				<li><a href="#">Audi</a></li>
-				<li><a href="#">BMW</a></li>
-				<li><a href="#">Cadillac</a></li>
-				<li><a href="#">Ferrari</a></li>
+				<li><a href="#">Latest</a></li>
+				<li><a href="#">Top Rated</a></li>
+				<li><a href="#">Popular</a></li>
+				<li><a href="#">Now Playing</a></li>
+				<li><a href="#">Upcoming</a></li>
 			</ul>
 		</div><!-- /panel -->
-
-		
-		
 
 		<div role="main" class="ui-content">
 
@@ -54,35 +51,12 @@
 				<div class="clear"></div>
 			</div>
 
-			<ul class="mvl-img-fix" data-role="listview" data-inset="true">
-				<li>
-					<a href="#">
-						<img src="http://image.tmdb.org/t/p/w92//tvSlBzAdRE29bZe5yYWrJ2ds137.jpg">
-						<h2>Broken Bells</h2>
-						<p><strong>Boston Conference Planning</strong></p>
-						<p>Sure, let's plan on meeting at Highland Kitchen at 8:00 tonight. Can't wait!</p>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<img src="http://image.tmdb.org/t/p/w92//tvSlBzAdRE29bZe5yYWrJ2ds137.jpg">
-						<h2>Broken Bells</h2>
-						<p><strong>Boston Conference Planning</strong></p>
-						<p>Sure, let's plan on meeting at Highland Kitchen at 8:00 tonight. Can't wait!</p>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<img src="http://image.tmdb.org/t/p/w92//tvSlBzAdRE29bZe5yYWrJ2ds137.jpg">
-						<h2>Broken Bells</h2>
-						<p><strong>Boston Conference Planning</strong></p>
-						<p>Sure, let's plan on meeting at Highland Kitchen at 8:00 tonight. Can't wait!</p>
-					</a>
-				</li>
+			<!-- Show movies as list -->
+			<ul class="mvl-img-fix" data-role="listview" data-inset="true" id="movie-list">
+				
 			</ul>
 		</div><!-- /content -->
+
 		<!-- Content 
 		<div data-role="contnet">
 			<div class="content-wrapper" data-iscroll>
@@ -98,6 +72,52 @@
 			<h1>&copy; 2015 jewelfarazi.me</h1>
 		</div>
 	</div>
-	
+
+	<!-- Info Layout -->
+	<div data-role="page" id="infopage">
+		<!-- Header -->
+		<div data-theme="a" data-role="header" class="gbl-bg">
+			
+			<h3>Movie Info</h3>
+
+			<a href="#left-panel2" data-theme="b" data-icon="bullets" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon">Menu</a>
+			<a href="#home" data-theme="b" data-icon="back" data-iconpos="notext" data-iconshadow="true" data-transition="slide" data-direction="reverse" class="ui-nodisc-icon">Back</a>
+
+		</div>
+
+		<div data-role="panel" id="left-panel2" data-position-fixed="true" data-display="push" data-theme="b">
+			<ul data-role="listview">
+				<li data-icon="gear"><a href="#" data-rel="close">Menu</a></li>
+				
+				<li><a href="#">Latest</a></li>
+				<li><a href="#">Top Rated</a></li>
+				<li><a href="#">Popular</a></li>
+				<li><a href="#">Now Playing</a></li>
+				<li><a href="#">Upcoming</a></li>
+			</ul>
+		</div><!-- /panel -->
+
+		<!-- Content -->
+		<div role="main" class="ui-content center-fix">
+			<div class="ui-body ui-body-a ui-corner-all">
+				<div id="show-mv-img">
+					
+				</div>
+
+				<ul data-role="listview" id="movie-data" data-theme="a" class="show-mv-info">
+					
+				</ul>
+			</div>
+			
+		</div>
+
+		<!-- Footer -->
+		<div data-theme="a" data-role="footer" class="gbl-bg">
+			<h1>&copy; 2015 jewelfarazi.me</h1>
+		</div>
+	</div>
+
+
+
 </body>
 </html>

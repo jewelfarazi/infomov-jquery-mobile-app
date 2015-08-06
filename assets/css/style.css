@@ -1,18 +1,11 @@
+/* global background color fix */
 .gbl-bg {
 	background-color: #38c;
 	border-color: #38c;
     color: #fff;
     text-shadow: 0 1px 0 #059;
 }
-/*
-button.ui-btn.ui-btn-icon-notext,
-button.ui-btn.ui-btn-icon-notext:hover {
-	background: none;
-    border: none;
-    box-shadow: none;
-    text-shadow: none;
-}
-*/
+/* Top search section */
 .top-search {
 	float: left;
 	width: calc(100% - 40px);
@@ -27,14 +20,24 @@ button.ui-btn.ui-btn-icon-notext:hover {
 .clear {
 	clear: both;
 }
-
+/* Side panel menu section */
 .movie-menu {
 	margin: 0;
 	padding-bottom: 18px;
 }
-
+/* movie list image fix */
 .mvl-img-fix img {
 	max-height: inherit !important;
+}
+
+#show-mv-img h2 {
+	margin-top: 0;
+}
+
+#show-mv-img,
+.show-mv-info li {
+	text-align: center !important;
+	white-space:normal !important;
 }
 
 
