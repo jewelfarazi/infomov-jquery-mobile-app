@@ -20,7 +20,7 @@
 	<div data-role="page" id="home">
 		<!-- Header -->
 		<div data-theme="a" data-role="header" class="gbl-bg">
-			<h3 role="heading" aria-level="1">Moive List</h3>
+			<h3 role="heading" aria-level="1" id="movieAppHead">Movie List</h3>
 			<!--<button data-icon="back" data-iconpos="notext" data-iconshadow="true">Back</button>-->
 
 			<a href="#left-panel" data-theme="b" data-icon="bullets" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon">Menu</a>
@@ -28,13 +28,13 @@
 
 		<div data-role="panel" id="left-panel" data-position-fixed="true" data-display="push" data-theme="b">
 			<ul data-role="listview">
-				<li data-icon="gear"><a href="#" data-rel="close">Menu</a></li>
-				
-				<li><a href="#">Latest</a></li>
-				<li><a href="#">Top Rated</a></li>
-				<li><a href="#">Popular</a></li>
-				<li><a href="#">Now Playing</a></li>
-				<li><a href="#">Upcoming</a></li>
+				<li data-icon="carat-l"><a href="#" data-rel="close">Movie Menu</a></li>
+
+				<li><a href="#" id="getNowPlaying">Now Playing</a></li>
+				<li><a href="#" id="getTopRated">Top Rated</a></li>
+				<li><a href="#" id="getPopular">Popular</a></li>
+				<li><a href="#" id="getUpcoming">Upcoming</a></li>
+				<li><a href="#">About</a></li>
 			</ul>
 		</div><!-- /panel -->
 
@@ -43,7 +43,7 @@
 			<!-- Movie on search -->
 			<div data-role="search" data-inset="true">
 				<div class="top-search">
-					<input data-type="search" id="movieName" placeholder="Enter movie name ...">					
+					<input data-type="search" id="movieName" placeholder="Search... (eg. Star Wars)">					
 				</div>
 				<div class="top-search-btn">
 					<button id="newSearch" data-icon="navigation" data-iconpos="notext" data-iconshadow="true">Search</button>
@@ -52,9 +52,13 @@
 			</div>
 
 			<!-- Show movies as list -->
-			<ul class="mvl-img-fix" data-role="listview" data-inset="true" id="movie-list">
-				
-			</ul>
+			<div class="content-wrapper" data-iscroll>
+				<ul class="mvl-img-fix" data-role="listview" data-inset="true" id="movie-list">
+					
+				</ul>
+
+				<h3 class="no-result-found">No result found</h3>
+			</div>
 		</div><!-- /content -->
 
 		<!-- Content 
@@ -80,22 +84,9 @@
 			
 			<h3>Movie Info</h3>
 
-			<a href="#left-panel2" data-theme="b" data-icon="bullets" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon">Menu</a>
 			<a href="#home" data-theme="b" data-icon="back" data-iconpos="notext" data-iconshadow="true" data-transition="slide" data-direction="reverse" class="ui-nodisc-icon">Back</a>
 
 		</div>
-
-		<div data-role="panel" id="left-panel2" data-position-fixed="true" data-display="push" data-theme="b">
-			<ul data-role="listview">
-				<li data-icon="gear"><a href="#" data-rel="close">Menu</a></li>
-				
-				<li><a href="#">Latest</a></li>
-				<li><a href="#">Top Rated</a></li>
-				<li><a href="#">Popular</a></li>
-				<li><a href="#">Now Playing</a></li>
-				<li><a href="#">Upcoming</a></li>
-			</ul>
-		</div><!-- /panel -->
 
 		<!-- Content -->
 		<div role="main" class="ui-content center-fix">

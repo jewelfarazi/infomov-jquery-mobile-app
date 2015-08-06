@@ -1,9 +1,21 @@
+
+
+// url for to get movie data from themoviedb
+var url = 'http://api.themoviedb.org/3/',
+	mode = 'search/movie?query=',
+	movieName = '&query='+encodeURI('Star Wars'),
+	key = '&api_key=c3510578883ca819e8954e6afc9accdd';
+
+
+
+
 // Initiate Variables
 var movieInfo = {
 	id : null,
 	result : null
 }
 
+// ajax repsonse handler
 var ajax = {
 	parseJSONP : function(result) {
 		movieInfo.result = result.results;
@@ -21,14 +33,60 @@ var ajax = {
 	}
 }
 
-// url for to get movie data from themoviedb
-var url = 'http://api.themoviedb.org/3/',
-	mode = 'search/movie?query=',
-	movieName = '&query='+encodeURI('Star Wars'),
-	key = '&api_key=c3510578883ca819e8954e6afc9accdd';
+// Themoviedb api url and endpoints
+var api_url = 'http://api.themoviedb.org/3/',
+	now_playing = 'movie/now_playing?',
+	top_rated = 'movie/top_rated?',
+	popular = 'movie/popular?',
+	upcoming = 'movie/upcoming?',
+	search_movie = 'search/movie?',
+	api_key = 'api_key=c3510578883ca819e8954e6afc9accdd';
+
+// Main ajax functionality
+function getMovies(url, isPanel) {
+	// using settimeout to fix loading issue
+	setTimeout(function() {
+		$.mobile.loading('show');
+		$('.no-result-found').hide();
+		if (isPanel) {
+			$('#left-panel').panel('close');
+			$('#movieName').val("");
+		}
+	}, 20);
+	// remove old data
+	$('#movie-list').empty();
+	// Making the ajax calls to the api
+	$.ajax({
+		url: url,
+		dataType: "jsonp",
+		async: true,
+		success: function(result) {
+			//console.log(result);
+			ajax.parseJSONP(result);
+			// hide loader
+			$.mobile.loading('hide');
+			// if nothing found
+			if ($.isArray(result.results) && result.results.length === 0) {
+				$('.no-result-found').show();
+			} else {
+				$('.no-result-found').hide();
+			}
+		},
+		error: function(req,err) {
+			alert('Network error has occured please try again!');
+		}
+	});
+}
+
 
 // Init page page with default movie list
 $(document).on('pageinit', '#home', function() {
+
+	// geting movie data via ajax calls
+	getMovies(api_url+now_playing+api_key, false);
+	$('#movieAppHead').html('Now Playing');
+	
+	/*
 	// using settimeout to fix loading issue
 	setTimeout(function() {
 		$.mobile.loading('show');
@@ -47,6 +105,7 @@ $(document).on('pageinit', '#home', function() {
 			alert('Network error has occured please try again!');
 		}
 	});
+	*/
 });
 
 // Initialize swipe menu
@@ -60,22 +119,6 @@ $( document ).on( "pagecreate", "#home", function() {
 				$( "#right-panel" ).panel( "open" );
 			} else if ( e.type === "swiperight" ) {
 				$( "#left-panel" ).panel( "open" );
-			}
-		}
-	});
-});
-
-// Initialize swipe menu
-$( document ).on( "pagecreate", "#infopage", function() {
-	$( document ).on( "swipeleft swiperight", "#infopage", function( e ) {
-		// We check if there is no open panel on the page because otherwise
-		// a swipe to close the left panel would also open the right panel (and v.v.).
-		// We do this by checking the data that the framework stores on the page element (panel: open).
-		if ( $( ".ui-page-active" ).jqmData( "panel" ) !== "open" ) {
-			if ( e.type === "swipeleft" ) {
-				$( "#right-panel" ).panel( "open" );
-			} else if ( e.type === "swiperight" ) {
-				$( "#left-panel2" ).panel( "open" );
 			}
 		}
 	});
@@ -119,26 +162,41 @@ $(document).on('vclick', '#movie-list li a', function() {
 
 // Find new movies on search
 $(document).on('vclick', '#newSearch', function() {
-	// using settimeout to fix loading issue
-	setTimeout(function() {
-		$.mobile.loading('show');
-	}, 20);
-	// remove old data
-	$('#movie-list').empty();
+
 	// search value
 	var mname = $('#movieName').val();
-	movieName = '&query='+encodeURI(mname),
-	// Making the ajax calls to the api
-	$.ajax({
-		url: url + mode + key + movieName,
-		dataType: "jsonp",
-		async: true,
-		success: function(result) {
-			ajax.parseJSONP(result);
-			$.mobile.loading('hide');
-		},
-		error: function(req,err) {
-			alert('Network error has occured please try again!');
-		}
-	});
+	movieName = '&query='+encodeURI(mname);
+
+	// geting movie data via ajax calls
+	getMovies(api_url+search_movie+api_key+movieName, false);
+	$('#movieAppHead').html('Movie List');
+
+});
+
+// GET now playing movies
+$(document).on('vclick', '#getNowPlaying', function() {
+	// geting movie data via ajax calls
+	getMovies(api_url+now_playing+api_key, true);
+	$('#movieAppHead').html('Now Playing');
+});
+
+// GET top rated movies
+$(document).on('vclick', '#getTopRated', function() {
+	// geting movie data via ajax calls
+	getMovies(api_url+top_rated+api_key, true);
+	$('#movieAppHead').html('Top Rated');
+});
+
+// GET popular movies
+$(document).on('vclick', '#getPopular', function() {
+	// geting movie data via ajax calls
+	getMovies(api_url+popular+api_key, true);
+	$('#movieAppHead').html('Popular');
+});
+
+// GET upcoming movies
+$(document).on('vclick', '#getUpcoming', function() {
+	// geting movie data via ajax calls
+	getMovies(api_url+upcoming+api_key, true);
+	$('#movieAppHead').html('Upcoming');
 });

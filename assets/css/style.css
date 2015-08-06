@@ -5,6 +5,10 @@
     color: #fff;
     text-shadow: 0 1px 0 #059;
 }
+
+.content-wrapper, .content-wrapper div.iscroll-scroller {
+	width: 100% !important;
+}
 /* Top search section */
 .top-search {
 	float: left;
@@ -40,6 +44,11 @@
 	white-space:normal !important;
 }
 
+.no-result-found {
+	display: none;
+	text-align: center;
+	padding-top: 70px;
+}
 
 /* Swipe works with mouse as well but often causes text selection. */
 /* We'll deny text selecton on everything but INPUTs and TEXTAREAs. */
