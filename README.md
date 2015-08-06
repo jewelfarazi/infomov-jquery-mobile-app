@@ -5,3 +5,6 @@
 Just copy all files to 'www' folder inside your Cordova project. Change related xml texts on Cordova app config files. 
 
 Besides Cordova it will perfectly work with your web browser as well :)
+
+## How it works
+The purpose of this application is to get movie information which is happening via ajax calls to https://www.themoviedb.org API. So basically it is getting JSON movie data each time while making ajax calls and then at the front-end those data are manipulating via jquery mobile features. The important thing is that, you should get an API key themoviedb.org to make your own app.
