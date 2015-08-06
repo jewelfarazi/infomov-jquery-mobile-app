@@ -9,7 +9,12 @@ var ajax = {
 		movieInfo.result = result.results;
 		// append each of movie data to the list
 		$.each(result.results, function(i, row) {
-			$('#movie-list').append('<li><a href="#" data-id="'+ row.id +'"><img src="http://image.tmdb.org/t/p/w92/'+ row.poster_path +'"><h2>'+ row.title +'</h2><p><strong>Rating: '+ row.vote_average + '/10</strong></p><p><strong>Rel. Date:</strong> '+ row.release_date.split("-").reverse().join("-") +'</p></a></li>');
+			if (row.release_date !== null) {
+				var rd = row.release_date.split("-").reverse().join("-");
+			} else {
+				var rd = "---";
+			}
+			$('#movie-list').append('<li><a href="#" data-id="'+ row.id +'"><img src="http://image.tmdb.org/t/p/w92/'+ row.poster_path +'"><h2>'+ row.title +'</h2><p><strong>Rating: '+ row.vote_average + '/10</strong></p><p><strong>Rel. Date:</strong> '+ rd +'</p></a></li>');
 		});
 		// refresh the total lists
 		$('#movie-list').listview('refresh');
@@ -88,8 +93,13 @@ $(document).on('pagebeforeshow', '#infopage', function(){
 
             //$('#movie-data').append('<li><img class="m-info-fix" src="http://image.tmdb.org/t/p/w92/'+row.poster_path+'"></li>');
             //$('#movie-data').append('<li>Title: '+row.original_title+'</li>');
+            if (row.release_date !== null) {
+				var rd = row.release_date.split("-").reverse().join("-");
+			} else {
+				var rd = "---";
+			}
             $('#movie-data').append('<li><strong>Language : '+row.original_language.toUpperCase()+'</strong></li>');
-            $('#movie-data').append('<li><strong>Release date: '+ row.release_date.split("-").reverse().join("-") +'</strong></li>');
+            $('#movie-data').append('<li><strong>Release date: '+ rd +'</strong></li>');
             $('#movie-data').append('<li><strong>Rating : '+row.vote_average+'/10</strong></li>');
             //$('#movie-data').append('<li><strong>Popularity : '+row.popularity+'</strong></li>');
             $('#movie-data').append('<li><strong>Overview :</strong> '+row.overview+'</li>');
@@ -109,6 +119,10 @@ $(document).on('vclick', '#movie-list li a', function() {
 
 // Find new movies on search
 $(document).on('vclick', '#newSearch', function() {
+	// using settimeout to fix loading issue
+	setTimeout(function() {
+		$.mobile.loading('show');
+	}, 20);
 	// remove old data
 	$('#movie-list').empty();
 	// search value
@@ -121,6 +135,7 @@ $(document).on('vclick', '#newSearch', function() {
 		async: true,
 		success: function(result) {
 			ajax.parseJSONP(result);
+			$.mobile.loading('hide');
 		},
 		error: function(req,err) {
 			alert('Network error has occured please try again!');
