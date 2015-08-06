@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Movie Info App</title>
+	<title>InfoMov</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/lib/jquerymobile/jquery.mobile-1.4.5.min.css">
 	<link rel="stylesheet" href="assets/lib/jquerymobile/jquery.mobile.iscrollview.css">
@@ -34,7 +34,7 @@
 				<li><a href="#" id="getTopRated">Top Rated</a></li>
 				<li><a href="#" id="getPopular">Popular</a></li>
 				<li><a href="#" id="getUpcoming">Upcoming</a></li>
-				<li><a href="#">About</a></li>
+				<li><a href="#about" data-rel="close">About</a></li>
 			</ul>
 		</div>
 		<!-- Movie list content -->
@@ -90,6 +90,36 @@
 				</ul>
 			</div>
 			
+		</div>
+
+		<!-- Footer -->
+		<div data-theme="a" data-role="footer" class="gbl-bg">
+			<h1>&copy; 2015 <a class="f-link" href="http://jewelfarazi.me">jewelfarazi.me</a></h1>
+		</div>
+	</div>
+
+	<!-- About page -->
+	<div data-role="page" id="about">
+		<!-- Header -->
+		<div data-theme="a" data-role="header" class="gbl-bg">
+			<!-- Header Title -->
+			<h3>About app</h3>
+			<!-- Back button -->
+			<a href="#home" data-theme="b" data-icon="back" data-iconpos="notext" data-iconshadow="true" data-transition="slide" data-direction="reverse" class="ui-nodisc-icon">Back</a>
+		</div>
+
+		<!-- Content -->
+		<div role="main" class="ui-content center-fix">
+			<div class="ui-body ui-body-a ui-corner-all">
+				<p>
+				This is a simple movie info app based on <a href="https://www.themoviedb.org/">themoviedb.org</a> API.
+				You can find any movie info anytime you need by searching and also using categoires like Now Playing, Top Rated etc.
+				Mostly I've developed because I'm curious about new movies and it is giving information I need! Hope it will help you as well :) 
+				</p>
+				<p>
+				Developed by <em>jewel farazi.</em>
+				</p>
+			</div>
 		</div>
 
 		<!-- Footer -->

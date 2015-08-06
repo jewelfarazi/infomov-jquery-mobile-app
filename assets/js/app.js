@@ -169,3 +169,5 @@ $(document).on('vclick', '#getUpcoming', function() {
 	getMovies(api_url+upcoming+api_key, true);
 	$('#movieAppHead').html('Upcoming');
 });
+
+// About info
