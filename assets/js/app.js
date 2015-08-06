@@ -1,14 +1,3 @@
-
-
-// url for to get movie data from themoviedb
-var url = 'http://api.themoviedb.org/3/',
-	mode = 'search/movie?query=',
-	movieName = '&query='+encodeURI('Star Wars'),
-	key = '&api_key=c3510578883ca819e8954e6afc9accdd';
-
-
-
-
 // Initiate Variables
 var movieInfo = {
 	id : null,
@@ -21,12 +10,15 @@ var ajax = {
 		movieInfo.result = result.results;
 		// append each of movie data to the list
 		$.each(result.results, function(i, row) {
-			if (row.release_date !== null) {
-				var rd = row.release_date.split("-").reverse().join("-");
-			} else {
-				var rd = "---";
-			}
-			$('#movie-list').append('<li><a href="#" data-id="'+ row.id +'"><img src="http://image.tmdb.org/t/p/w92/'+ row.poster_path +'"><h2>'+ row.title +'</h2><p><strong>Rating: '+ row.vote_average + '/10</strong></p><p><strong>Rel. Date:</strong> '+ rd +'</p></a></li>');
+			// if values = null
+			var poster = (row.poster_path !== null) ? "http://image.tmdb.org/t/p/w92/"+row.poster_path : "http://dummyimage.com/80x120&text=No%20Image";
+			var vote = (row.vote_average !== null) ? row.vote_average : "---";
+			var rd = (row.release_date !== null) ? row.release_date.split("-").reverse().join("-") : '"---"'
+
+			$('#movie-list').append('<li><a href="#" data-id="'+ row.id +'"><img src="'+ 
+				poster +'"><h2>'+ row.title +'</h2><p><strong>Rating: '+ 
+				vote + '/10</strong></p><p><strong>Rel. Date:</strong> '+ 
+				rd +'</p></a></li>');
 		});
 		// refresh the total lists
 		$('#movie-list').listview('refresh');
@@ -72,40 +64,18 @@ function getMovies(url, isPanel) {
 				$('.no-result-found').hide();
 			}
 		},
-		error: function(req,err) {
-			alert('Network error has occured please try again!');
+		error: function(x, t, m) {
+		    // if ajax has error
 		}
 	});
 }
 
-
 // Init page page with default movie list
 $(document).on('pageinit', '#home', function() {
-
 	// geting movie data via ajax calls
 	getMovies(api_url+now_playing+api_key, false);
+	// Updating app title
 	$('#movieAppHead').html('Now Playing');
-	
-	/*
-	// using settimeout to fix loading issue
-	setTimeout(function() {
-		$.mobile.loading('show');
-	}, 20);
-
-	// Making the ajax calls to the api
-	$.ajax({
-		url: url + mode + key + movieName,
-		dataType: "jsonp",
-		async: true,
-		success: function(result) {
-			ajax.parseJSONP(result);
-			$.mobile.loading('hide');
-		},
-		error: function(req,err) {
-			alert('Network error has occured please try again!');
-		}
-	});
-	*/
 });
 
 // Initialize swipe menu
@@ -130,22 +100,23 @@ $(document).on('pagebeforeshow', '#infopage', function(){
     $('#movie-data').empty();
     $.each(movieInfo.result, function(i, row) {
         if(row.id == movieInfo.id) {
-        	$("#show-mv-img").empty();
-        	$('#show-mv-img').append('<img class="m-info-fix" src="http://image.tmdb.org/t/p/w92/'+row.poster_path+'">');
-        	$('#show-mv-img').append('<h2>'+ row.original_title +'</h2>');
+        	// if values = null
+        	var poster = (row.poster_path !== null) ? "http://image.tmdb.org/t/p/w92/"+row.poster_path : "http://dummyimage.com/92x138&text=No%20Image";
+			var vote = (row.vote_average !== null) ? row.vote_average : "---";
+			var rd = (row.release_date !== null) ? row.release_date.split("-").reverse().join("-") : '"---"';
+			var title = (row.original_title !== null) ? row.original_title : "---";
+			var or_lang = (row.original_language !== null) ? row.original_language.toUpperCase() : "---";
+			var overv = (row.overview !== null) ? row.overview : "No information available.";
 
-            //$('#movie-data').append('<li><img class="m-info-fix" src="http://image.tmdb.org/t/p/w92/'+row.poster_path+'"></li>');
-            //$('#movie-data').append('<li>Title: '+row.original_title+'</li>');
-            if (row.release_date !== null) {
-				var rd = row.release_date.split("-").reverse().join("-");
-			} else {
-				var rd = "---";
-			}
-            $('#movie-data').append('<li><strong>Language : '+row.original_language.toUpperCase()+'</strong></li>');
+			// removing older data from info page
+        	$("#show-mv-img").empty();
+
+        	$('#show-mv-img').append('<img class="m-info-fix" src="'+poster+'">');
+        	$('#show-mv-img').append('<h2>'+ title +'</h2>');
+            $('#movie-data').append('<li><strong>Language : '+ or_lang +'</strong></li>');
             $('#movie-data').append('<li><strong>Release date: '+ rd +'</strong></li>');
-            $('#movie-data').append('<li><strong>Rating : '+row.vote_average+'/10</strong></li>');
-            //$('#movie-data').append('<li><strong>Popularity : '+row.popularity+'</strong></li>');
-            $('#movie-data').append('<li><strong>Overview :</strong> '+row.overview+'</li>');
+            $('#movie-data').append('<li><strong>Rating : '+vote+'/10</strong></li>');
+            $('#movie-data').append('<li><strong>Overview :</strong> '+ overv +'</li>');
 
             // refresh all new data          
             $('#movie-data').listview('refresh');
@@ -153,16 +124,15 @@ $(document).on('pagebeforeshow', '#infopage', function(){
     });    
 });
 
-// catch the specific movie click event and change the page to info
+// Catch the specific movie click event and change the page to info
 $(document).on('vclick', '#movie-list li a', function() {
 	movieInfo.id = $(this).attr('data-id');
 	// change to info page
 	$.mobile.changePage('#infopage', { transition: "slide", changeHash: false });
 });
 
-// Find new movies on search
+// POST Find new movies on search
 $(document).on('vclick', '#newSearch', function() {
-
 	// search value
 	var mname = $('#movieName').val();
 	movieName = '&query='+encodeURI(mname);
@@ -170,7 +140,6 @@ $(document).on('vclick', '#newSearch', function() {
 	// geting movie data via ajax calls
 	getMovies(api_url+search_movie+api_key+movieName, false);
 	$('#movieAppHead').html('Movie List');
-
 });
 
 // GET now playing movies

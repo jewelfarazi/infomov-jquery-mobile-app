@@ -9,6 +9,11 @@
 .content-wrapper, .content-wrapper div.iscroll-scroller {
 	width: 100% !important;
 }
+
+.f-link {
+	color: #FFF !important;
+	text-decoration: none !important;
+}
 /* Top search section */
 .top-search {
 	float: left;
@@ -48,6 +53,11 @@
 	display: none;
 	text-align: center;
 	padding-top: 70px;
+}
+
+.m-info-class {
+	width: 92px;
+	height: 138px;
 }
 
 /* Swipe works with mouse as well but often causes text selection. */

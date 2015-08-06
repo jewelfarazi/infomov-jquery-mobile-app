@@ -16,16 +16,16 @@
 </head>
 <body>
 
-	<!-- List Layout -->
+	<!-- List Page Layout -->
 	<div data-role="page" id="home">
 		<!-- Header -->
 		<div data-theme="a" data-role="header" class="gbl-bg">
+			<!-- Head Title -->
 			<h3 role="heading" aria-level="1" id="movieAppHead">Movie List</h3>
-			<!--<button data-icon="back" data-iconpos="notext" data-iconshadow="true">Back</button>-->
-
+			<!-- Left Menu button -->
 			<a href="#left-panel" data-theme="b" data-icon="bullets" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon">Menu</a>
 		</div>
-
+		<!-- Left panel menu -->
 		<div data-role="panel" id="left-panel" data-position-fixed="true" data-display="push" data-theme="b">
 			<ul data-role="listview">
 				<li data-icon="carat-l"><a href="#" data-rel="close">Movie Menu</a></li>
@@ -36,8 +36,8 @@
 				<li><a href="#" id="getUpcoming">Upcoming</a></li>
 				<li><a href="#">About</a></li>
 			</ul>
-		</div><!-- /panel -->
-
+		</div>
+		<!-- Movie list content -->
 		<div role="main" class="ui-content">
 
 			<!-- Movie on search -->
@@ -56,45 +56,35 @@
 				<ul class="mvl-img-fix" data-role="listview" data-inset="true" id="movie-list">
 					
 				</ul>
-
+				<!-- When nothing found -->
 				<h3 class="no-result-found">No result found</h3>
 			</div>
-		</div><!-- /content -->
-
-		<!-- Content 
-		<div data-role="contnet">
-			<div class="content-wrapper" data-iscroll>
-				<ul data-role="listview" id="movie-list" data-theme="e">
-					
-				</ul>
-			</div>
 		</div>
-		-->
 
 		<!-- Footer -->
 		<div data-theme="a" data-role="footer" class="gbl-bg">
-			<h1>&copy; 2015 jewelfarazi.me</h1>
+			<h1>&copy; 2015 <a class="f-link" href="http://jewelfarazi.me">jewelfarazi.me</a></h1>
 		</div>
 	</div>
 
-	<!-- Info Layout -->
+	<!-- Info Page Layout -->
 	<div data-role="page" id="infopage">
 		<!-- Header -->
 		<div data-theme="a" data-role="header" class="gbl-bg">
-			
+			<!-- Header Title -->
 			<h3>Movie Info</h3>
-
+			<!-- Back button -->
 			<a href="#home" data-theme="b" data-icon="back" data-iconpos="notext" data-iconshadow="true" data-transition="slide" data-direction="reverse" class="ui-nodisc-icon">Back</a>
-
 		</div>
 
 		<!-- Content -->
 		<div role="main" class="ui-content center-fix">
 			<div class="ui-body ui-body-a ui-corner-all">
+				<!-- Show movie poster and title-->
 				<div id="show-mv-img">
 					
 				</div>
-
+				<!-- Movie info list -->
 				<ul data-role="listview" id="movie-data" data-theme="a" class="show-mv-info">
 					
 				</ul>
@@ -104,11 +94,9 @@
 
 		<!-- Footer -->
 		<div data-theme="a" data-role="footer" class="gbl-bg">
-			<h1>&copy; 2015 jewelfarazi.me</h1>
+			<h1>&copy; 2015 <a class="f-link" href="http://jewelfarazi.me">jewelfarazi.me</a></h1>
 		</div>
 	</div>
-
-
 
 </body>
 </html>
